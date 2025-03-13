@@ -27,5 +27,25 @@ router.get('/', async (req, res) => {
     }
 });
 
+//obtener un solo cliente
+
+router.get('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const [rows] = await pool.execute(
+            'SELECT * FROM cliente WHERE id_cliente =?',
+            [id]
+        );
+        if (rows.length > 0) {
+            res.json(rows[0]);
+        } else {
+            res.status(404).json({ message: 'Cliente no encontrado' });
+        }
+        
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
 
 module.exports = router;
