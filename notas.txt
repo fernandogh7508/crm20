@@ -2,3 +2,5 @@
  npm init -y
  #instalar librerías
  npm install express mysql2 dotenv cors body-parser
+ npm server.js
+ 
